@@ -229,105 +229,11 @@ class Home_Page extends React.Component {
 
         }
 
-      </ScrollView>
-      </SafeAreaView>
-
-    );
-
-
-  }
-
-}
-
-
-
-class Card_Page extends React.Component { 
-
-    constructor(props) {
-    super(props);
-    this.state = {
-      loading: true,
-      dataSource: []
-    };
-  }
-
-  componentDidMount() {
-    getNewsArticles().then(data => {
-      this.setState({
-        loading: false,
-        dataSource: data
-      });
-    }, error => {
-      Alert.alert('Error', 'Something went wrong!')
-    }
-
-    )
-  }
-
-
-  render() {
-
-
-          if (this.state.loading) {
-            return (
-              <View style={styles.loader}>
-                <ActivityIndicator size="large" color="#0c9" />
-                <Text> Loading.... </Text>
-              </View>
-            );
-          }
-
-
-
-
-
-    return (
-
-
-      <SafeAreaView>
-
-      <Text style={styles.news_title}> NEWS </Text>
-
-      <ScrollView
-      bounces={false}
-      >
-        {
-          this.state.dataSource.map(function (item, index) {
-
-            return (
-
-              <SafeAreaView style={styles.container} key={item[index]}>
-
-
-                <View style={styles.card_container}>
-          <View style={styles.card_template}>
-
-          <TouchableOpacity onPress={() => {
-                      Linking.openURL(item.url)
-                    }}
-                >
-            <Image 
-              
-              style={styles.card_image}
-              source={{uri: item.urlToImage}}
-          />
-          <View style={styles.text_container}>
-            <Text style={styles.card_title}> 
-              {item.title}
-            </Text>
-          </View>
-          </TouchableOpacity>
-        </View>
-        
-        </View>
-            <Text>     </Text>
-
-              </SafeAreaView>
-
-            );
-          })
-
-        }
+      <Text>     </Text>
+      <Text>     </Text>
+      <Text>     </Text>
+      <Text>     </Text>
+      
 
       </ScrollView>
       </SafeAreaView>
@@ -466,6 +372,7 @@ class Search extends React.Component {
           }
           keyExtractor={(item) => item.id}
         />
+
       </SafeAreaView>
     );
   }
@@ -647,6 +554,11 @@ class SubCategory extends React.Component {
 
         }
 
+        <Text>     </Text>
+        <Text>     </Text>
+        <Text>     </Text>
+        <Text>     </Text>
+
       </ScrollView>
       </SafeAreaView>
 
@@ -696,8 +608,6 @@ class Categories extends React.Component {
 
 
 
-
-
     return (
 
 
@@ -705,48 +615,235 @@ class Categories extends React.Component {
 
       <Text style={styles.news_title}> NEWS </Text>
 
-      <ScrollView
-      bounces={false}
-      >
-        {
-          this.state.dataSource.map(function (item, index) {
-
-            return (
-
-              <SafeAreaView style={styles.container} key={item[index]}>
+      <ScrollView>
 
 
-                <View style={styles.card_container}>
-          <View style={styles.card_template}>
+          <SafeAreaView style={styles.container}>
 
-          <TouchableOpacity onPress={() => {
-                      Linking.openURL(item.url)
-                    }}
-                >
-            <Image 
-              
-              style={styles.card_image}
-              source={{uri: item.urlToImage}}
-          />
-          <View style={styles.text_container}>
-            <Text style={styles.card_title}> 
-              {item.title}
-            </Text>
-          </View>
-          </TouchableOpacity>
-        </View>
-        
-        </View>
-            <Text>     </Text>
+          <Text style={{fontSize: 20, fontWeight: 'bold', padding: 10, color: 'blue'}}> Browse specific sections </Text>
+                          <View style={styles.categories_card_container}>
+                    <View style={styles.card_template}>
 
-              </SafeAreaView>
+                    <TouchableOpacity onPress={() => {
+                                category='sports'
+                                this.props.navigation.navigate("Sub Category")
+                              }}
+                          >
+                      <Image 
+                        
+                        style={styles.card_image}
+                        source={{uri: 'https://newsonair.com/wp-content/uploads/2022/04/6-2.jpeg'}}
+                    />
+                    <View style={styles.text_container}>
+                      <Text style={styles.categories_card_title}> 
+                        SPORTS
+                      </Text>
+                    </View>
+                    </TouchableOpacity>
+                  </View>
+                  
+                  </View>
+                      <Text>     </Text>
 
-            );
-          })
 
-        }
+                      <View style={styles.categories_card_container}>
+                    <View style={styles.card_template}>
+
+                    <TouchableOpacity onPress={() => {
+                                category='business'
+                                this.props.navigation.navigate("Sub Category")
+                              }}
+                          >
+                      <Image 
+                        
+                        style={styles.card_image}
+                        source={{uri: 'https://indianmarketview.com/wp-content/uploads/Daily-Morning-News.jpg'}}
+                    />
+                    <View style={styles.text_container}>
+                      <Text style={{
+
+                        fontWeight: 'bold',
+                        fontFamily: 'Times New Roman',
+                        fontSize: 20,
+                        justifyContent: 'center',
+                        color: 'white',
+                        padding: 10,
+                        textAlign: 'center',
+                        backgroundColor: 'black'
+
+                      }}> 
+                        BUSINESS
+                      </Text>
+                    </View>
+                    </TouchableOpacity>
+                  </View>
+                  
+                  </View>
+                      <Text>     </Text>
+
+                      <View style={styles.categories_card_container}>
+                    <View style={styles.card_template}>
+
+                    <TouchableOpacity onPress={() => {
+                                category='entertainment'
+                                this.props.navigation.navigate("Sub Category")
+                              }}
+                          >
+                      <Image 
+                        
+                        style={styles.card_image}
+                        source={{uri: 'https://thumbs.dreamstime.com/b/megaphone-hand-business-concept-text-celebrity-news-megaphone-hand-business-concept-text-celebrity-news-vector-110860191.jpg'}}
+                    />
+                    <View style={styles.text_container}>
+                      <Text style={{
+
+                        fontWeight: 'bold',
+                        fontFamily: 'Times New Roman',
+                        fontSize: 20,
+                        justifyContent: 'center',
+                        color: 'white',
+                        padding: 10,
+                        textAlign: 'center',
+                        backgroundColor: 'black'
+
+                      }}> 
+                        ENTERTAINMENT 
+                      </Text>
+                    </View>
+                    </TouchableOpacity>
+                  </View>
+                  
+                  </View>
+                      <Text>     </Text>
+
+
+                      <View style={styles.categories_card_container}>
+                    <View style={styles.card_template}>
+
+                    <TouchableOpacity onPress={() => {
+                                category='general'
+                                this.props.navigation.navigate("Sub Category")
+                              }}
+                          >
+                      <Image 
+                        
+                        style={styles.card_image}
+                        source={{uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDtOP38wTksXWi3uU_5zSL7R2xI0QRiaUD7A&usqp=CAU'}}
+                    />
+                    <View style={styles.text_container}>
+                      <Text style={styles.categories_card_title}> 
+                        GENERAL
+                      </Text>
+                    </View>
+                    </TouchableOpacity>
+                  </View>
+                  
+                  </View>
+                      <Text>     </Text>
+
+      <View style={styles.categories_card_container}>
+                    <View style={styles.card_template}>
+
+                    <TouchableOpacity onPress={() => {
+                                category='health'
+                                this.props.navigation.navigate("Sub Category")
+                              }}
+                          >
+                      <Image 
+                        
+                        style={styles.card_image}
+                        source={{uri: 'https://cdn4.iconfinder.com/data/icons/medical-health-set-2-glyph/33/medical_news-512.png'}}
+                    />
+                    <View style={styles.text_container}>
+                      <Text style={{
+
+                        fontWeight: 'bold',
+                        fontFamily: 'Times New Roman',
+                        fontSize: 20,
+                        justifyContent: 'center',
+                        color: 'white',
+                        padding: 10,
+                        textAlign: 'center',
+                        backgroundColor: 'black'
+
+                      }}> 
+                        HEALTH
+                      </Text>
+                    </View>
+                    </TouchableOpacity>
+                  </View>
+                  
+                  </View>
+                      <Text>     </Text>
+
+
+                      <View style={styles.categories_card_container}>
+                    <View style={styles.card_template}>
+
+                    <TouchableOpacity onPress={() => {
+                                category='science'
+                                this.props.navigation.navigate("Sub Category")
+                              }}
+                          >
+                      <Image 
+                        
+                        style={styles.card_image}
+                        source={{uri: 'https://cdn2.iconfinder.com/data/icons/science-navy-vol-2/64/Science_News-512.png'}}
+                    />
+                    <View style={styles.text_container}>
+                      <Text style={styles.categories_card_title}> 
+                        SCIENCE
+                      </Text>
+                    </View>
+                    </TouchableOpacity>
+                  </View>
+                  
+                  </View>
+                      <Text>     </Text>
+
+
+      <View style={styles.categories_card_container}>
+                    <View style={styles.card_template}>
+
+                    <TouchableOpacity onPress={() => {
+                                category='technology'
+                                this.props.navigation.navigate("Sub Category")
+                              }}
+                          >
+                      <Image 
+                        
+                        style={styles.card_image}
+                        source={{uri: 'https://matrixti.com/wp-content/uploads/2016/04/News-000047080356-cropped.jpg'}}
+                    />
+                    <View style={styles.text_container}>
+                      <Text style={{
+
+                        fontWeight: 'bold',
+                        fontFamily: 'Times New Roman',
+                        fontSize: 20,
+                        justifyContent: 'center',
+                        color: 'white',
+                        padding: 10,
+                        textAlign: 'center',
+                        backgroundColor: 'black'
+
+                      }}> 
+                        TECHNOLOGY
+                      </Text>
+                    </View>
+                    </TouchableOpacity>
+                  </View>
+                  
+                  </View>
+                      <Text>     </Text>
+                      <Text>     </Text>
+                      <Text>     </Text>
+                      <Text>     </Text>
+
+                  </SafeAreaView>
 
       </ScrollView>
+      
       </SafeAreaView>
 
     );
@@ -859,6 +956,22 @@ const styles = StyleSheet.create({
     justifyContent: 'right',
   },
 
+  categories_card_title: {
+     fontWeight: 'bold',
+     fontFamily: 'Times New Roman',
+     fontSize: 20,
+     justifyContent: 'center',
+     color: 'black',
+     padding: 10,
+     textAlign: 'center',
+  },
+
+  categories_card_container:{
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
 });
 
 
@@ -909,9 +1022,9 @@ const App = () => {
           <Stack.Navigator initialRouteName="Home_Page">
 
             <Stack.Screen name="Home_Page" component={BottomTabs} options={{headerShown:false}}/>
-            <Stack.Screen name="Card_Page" component={Card_Page} options={{headerShown:false}}/>
             <Stack.Screen name="Search" component={Search} options={{headerShown:false}}/>
-            <Stack.Screen name="Categories" component={Categories} />
+            <Stack.Screen name="Categories" component={Categories} options={{headerShown:false}}/>
+            <Stack.Screen name="Sub Category" component={SubCategory} options={{headerShown:false}}/>
 
           </Stack.Navigator>
         </Provider>
