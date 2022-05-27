@@ -342,6 +342,7 @@ class Home_Page extends React.Component {
       activeCardColor: true,
       activeListColor: false,
       showCountryList: false,
+      showFlag: '🌎',
     };
   }
 
@@ -370,7 +371,8 @@ class Home_Page extends React.Component {
                 <TouchableOpacity onPress={()=>{
                   country_code=item.code;
                   this.setState({
-                    showCountryList: false
+                    showCountryList: false,
+                    showFlag: item.flag
                   });
                   this.componentDidMount();
 
@@ -447,7 +449,7 @@ class Home_Page extends React.Component {
             <Text
                 style={styles.country_change_image}>
 
-                🌎
+                {this.state.showFlag}
 
               </Text>
         </TouchableOpacity>
@@ -491,7 +493,9 @@ class Home_Page extends React.Component {
         <Modal isVisible={this.state.showCountryList}>
         <SafeAreaView>
 
-        <Text> X </Text>
+        <TouchableOpacity onPress={()=>{this.setState({showCountryList: false})}}>
+          <Text style={styles.close_modal}> X </Text>
+        </TouchableOpacity>
 
         <FlatList
           data={countryData}
@@ -1395,6 +1399,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     textAlign: 'center'
   },
+  close_modal: {
+
+    fontWeight: 'bold',
+    padding: 10,
+    fontFamily: 'Times New Roman',
+    fontSize: 40,
+    justifyContent: 'right',
+    textAlign: 'right',
+    color: 'white',
+
+
+  }
 
 
 
