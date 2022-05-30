@@ -498,7 +498,7 @@ class Home_Page extends React.Component {
         </TouchableOpacity>
 
         <FlatList
-          data={countryData}
+          data={countryData.sort((a, b) => a.name.localeCompare(b.name))}
           renderItem={
             this.showCountries
           }
@@ -677,7 +677,16 @@ const renderItem = ({ item }) => {
   
 };
 
-class Search extends React.Component { 
+var allData=[];
+var generalData=[];
+var sportsData=[];
+var entertainmentData=[];
+var healthData=[];
+var scienceData=[];
+var techData=[];
+
+
+class Search extends React.Component {     
 
 
     constructor(props) {
@@ -691,20 +700,101 @@ class Search extends React.Component {
     }
 
     componentDidMount() {
+      category='general'
     getNewsArticles().then(data => {
       this.setState({
         loading: false,
-        dataSource: data
+        generalSource: data,
       });
+      generalData=data
+
+      category='sports'
+          getNewsArticles().then(data => {          
+          this.setState({
+            loading: false,
+            sportsSource: data,
+            dataSource: data,
+          });
+          sportsData=data
+                        
+        }, error => {
+          Alert.alert('Error', 'Something went wrong!')
+        }
+        )
+
+      category='entertainment'
+          getNewsArticles().then(data => {          
+          this.setState({
+            loading: false,
+            sportsSource: data,
+            dataSource: data,
+          });
+          entertainmentData=data
+                        
+        }, error => {
+          Alert.alert('Error', 'Something went wrong!')
+        }
+        )
+
+
+      category='health'
+          getNewsArticles().then(data => {          
+          this.setState({
+            loading: false,
+            sportsSource: data,
+            dataSource: data,
+          });
+          healthData=data
+                        
+        }, error => {
+          Alert.alert('Error', 'Something went wrong!')
+        }
+        )
+
+
+      category='science'
+          getNewsArticles().then(data => {          
+          this.setState({
+            loading: false,
+            sportsSource: data,
+            dataSource: data,
+          });
+          scienceData=data
+                        
+        }, error => {
+          Alert.alert('Error', 'Something went wrong!')
+        }
+        )
+
+
+      category='technology'
+          getNewsArticles().then(data => {          
+          this.setState({
+            loading: false,
+            sportsSource: data,
+            dataSource: data,
+          });
+          techData=data
+
+        }, error => {
+          Alert.alert('Error', 'Something went wrong!')
+        }
+        )
+
+      category='general'
+      
       this.arrayholder = data;
     }, error => {
       Alert.alert('Error', 'Something went wrong!')
     }
 
-    )
+    ) 
   }
 
-
+  renderData = () => {
+    allData=generalData.concat(sportsData,entertainmentData,healthData,scienceData,techData)
+    this.arrayholder = allData;
+  }
   searchFunction = (text) => {
     const updatedData = this.arrayholder.filter((item) => {
       const item_data = `${item.title.toUpperCase()})`;
@@ -715,6 +805,7 @@ class Search extends React.Component {
   };
   
   render() {
+    this.renderData();
     return (
       <SafeAreaView style={styles.container}>
 
